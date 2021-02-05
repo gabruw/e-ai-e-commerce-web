@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Build') {
+            steps {
+                bat 'yarn install'
+                bat 'yarn build'
+            }
+        }
+        stage ('Sonar Analysis') {
+            environment {
+                scannerHome = tool 'SONAR_SCANNER'
+            }
+            steps {
+                withSonarQubeEnv('SONAR_LOCAL'){
+                    bat "sonar-scanner.bat -Dsonar.projectKey=e-ai-e-commerce-frontend -Dsonar.sources=src -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0183a6ac84bf256e73e657ed3ef226418de11dcb"
+                }
+            }
+        }
+    }
+}
