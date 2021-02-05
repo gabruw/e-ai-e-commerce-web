@@ -1,8 +1,9 @@
 //#region Imports
 
+import ENDPOINTS from 'api/endpoint';
 import axios from 'axios';
-import USER_FIELDS from 'utils/constants/field/user';
-import ENDPOINTS from './endpoint';
+import secureStorage from 'storages/security/storage';
+import CLIENT_FIELD from 'utils/constants/field/client';
 
 //#endregion
 
@@ -17,18 +18,10 @@ const API = axios.create({
 });
 
 API.interceptors.request.use((config) => {
-    const user = JSON.parse(localStorage.getItem([USER_FIELDS.THIS]));
+    const client = secureStorage.getItem([CLIENT_FIELD.THIS]);
 
-    if (user && user.token) {
-        config.headers.Authorization = `Bearer ${user.token}`;
-    }
-
-    return config;
-});
-
-API.interceptors.response.use((config) => {
-    if (config.status === 401) {
-        localStorage.clear();
+    if (client && client.token) {
+        config.headers.Authorization = `Bearer ${client.token}`;
     }
 
     return config;

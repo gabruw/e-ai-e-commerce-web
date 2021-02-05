@@ -3,6 +3,7 @@
 import { ThemeProvider } from '@material-ui/core';
 import 'assets/css/global.css';
 import React from 'react';
+import { ClientContextProvider } from 'storages/client/context';
 import AppRoutes from './AppRoutes';
 import AppTheme from './AppTheme';
 
@@ -10,7 +11,9 @@ import AppTheme from './AppTheme';
 
 const App = () => (
     <ThemeProvider theme={AppTheme}>
-        <AppRoutes />
+        <ClientContextProvider>
+            <AppRoutes />
+        </ClientContextProvider>
     </ThemeProvider>
 );
 
