@@ -13,6 +13,7 @@ const FieldData = ({ name, error, className, ...rest }) => (
         <Controller
             name={name}
             disableToolbar
+            defaultValue=''
             variant='inline'
             format='dd/MM/yyyy'
             className={className}
