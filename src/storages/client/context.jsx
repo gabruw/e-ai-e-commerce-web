@@ -17,7 +17,7 @@ export const ClientContextProvider = ({ children, defaultValues }) => {
 
     const addClient = useCallback(
         (client) => {
-            secureStorage.setItem([CLIENT_FIELDS.THIS], client);
+            secureStorage.setItem(CLIENT_FIELDS.THIS, client);
             setState((prevState) => ({
                 ...prevState,
                 [CLIENT_FIELDS.THIS]: client
@@ -27,7 +27,7 @@ export const ClientContextProvider = ({ children, defaultValues }) => {
     );
 
     const removeClient = useCallback(() => {
-        secureStorage.removeItem([CLIENT_FIELDS.THIS]);
+        secureStorage.removeItem(CLIENT_FIELDS.THIS);
         setState((prevState) => ({
             ...prevState,
             [CLIENT_FIELDS.THIS]: initialState[CLIENT_FIELDS.THIS]

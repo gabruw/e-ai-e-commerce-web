@@ -5,7 +5,6 @@ import City from 'views/city';
 import Error from 'views/error';
 import Home from 'views/home';
 import Login from 'views/login';
-import Register from 'views/register';
 import State from 'views/state';
 import ROUTE_NAME from './route-name';
 
@@ -26,11 +25,6 @@ const ROUTES = [
         exact: true,
         component: Login,
         path: ROUTE_NAME.OUT.LOGIN
-    },
-    {
-        exact: true,
-        component: Register,
-        path: ROUTE_NAME.OUT.REGISTER
     },
     {
         exact: true,

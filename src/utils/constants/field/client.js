@@ -3,7 +3,8 @@ const CLIENT_FIELD = {
     ID: 'id',
     CPF: 'cpf',
     NAME: 'name',
-    BIRTH: 'birth'
+    BIRTH: 'birth',
+    GENDER: 'gender'
 };
 
 export default CLIENT_FIELD;

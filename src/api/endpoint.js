@@ -5,7 +5,7 @@ import buildQueryParams from 'utils/functions/buildQueryParams';
 //#endregion
 
 const ENDPOINTS = {
-    BASE_URL: 'https://localhost:8743',
+    BASE_URL: 'http://localhost:8743',
     AUTHENTICATION: {
         LOGIN: 'authentication/login',
         REFRESH: 'authentication/refresh'
@@ -28,9 +28,9 @@ const ENDPOINTS = {
     CITY: {
         EDIT: 'city/edit',
         INCLUDE: 'city/include',
-        OPTIONS: 'city/options',
         FIND_ALL: 'city/find-all',
         REMOVE: (id) => `city/remove?${buildQueryParams({ id })}`,
+        OPTIONS: (idState) => `city/options?${buildQueryParams({ idState })}`,
         FIND_BY_NAME: (name) => `city/find-name?${buildQueryParams({ name })}`
     },
     ADDRESS: {

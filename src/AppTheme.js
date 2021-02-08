@@ -27,6 +27,13 @@ const AppTheme = createMuiTheme(
             h6: { fontSize: 14, ...FONTS.GEOMANIST_MEDIUM },
             subtitle1: { fontSize: 12 },
             subtitle2: { fontSize: 10 }
+        },
+        overrides: {
+            MuiOutlinedInput: {
+                input: {
+                    padding: '11.5px 14px'
+                }
+            }
         }
     },
     ptBR

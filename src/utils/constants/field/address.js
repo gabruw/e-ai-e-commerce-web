@@ -3,6 +3,8 @@ const ADDRESS_FIELD = {
     ID: 'id',
     CEP: 'cep',
     ROAD: 'road',
+    CITY: 'city',
+    STATE: 'state',
     NUMBER: 'number',
     COMPLEMENT: 'complement',
     NEIGHBORHOOD: 'neighborhood'

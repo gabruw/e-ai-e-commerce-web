@@ -18,7 +18,7 @@ const API = axios.create({
 });
 
 API.interceptors.request.use((config) => {
-    const client = secureStorage.getItem([CLIENT_FIELD.THIS]);
+    const client = secureStorage.getItem(CLIENT_FIELD.THIS);
 
     if (client && client.token) {
         config.headers.Authorization = `Bearer ${client.token}`;

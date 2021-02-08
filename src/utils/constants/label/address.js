@@ -2,6 +2,8 @@ const ADDRESS_LABEL = {
     THIS: 'Endereço',
     CEP: 'CEP',
     ROAD: 'Rua',
+    CITY: 'Cidade',
+    STATE: 'Estado',
     NUMBER: 'Número',
     NEIGHBORHOOD: 'Bairro',
     COMPLEMENT: 'Complemento'

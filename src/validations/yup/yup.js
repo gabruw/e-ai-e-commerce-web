@@ -1,7 +1,7 @@
 //#region Imports
 
 import CLIENT_ERROR from 'utils/constants/error/client';
-import isCPFValid from 'utils/validators/functions/cpf';
+import isCPFValid from 'validations/functions/cpf';
 import * as yup from 'yup';
 
 //#endregion

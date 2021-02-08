@@ -9,6 +9,7 @@ const useStyles = makeStyles({
     content: {
         width: '100%',
         flexWrap: 'wrap',
+        margin: '12px 0 12px 0',
         alignItems: 'flex-start',
         ...ALIGN.LEFT
     },

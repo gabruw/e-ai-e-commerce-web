@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ROUTE_NAME from 'routes/route-name';
-import useSystemContext from 'storage/system/context';
+import useClientContext from 'storages/client/context';
 import sleep from 'utils/functions/sleep';
 
 //#endregion
@@ -17,7 +17,7 @@ const initalState = {
 
 const useRequestState = () => {
     const history = useHistory();
-    const { removeUser } = useSystemContext();
+    const { removeClient } = useClientContext();
     const [requestState, setRequestState] = useState(initalState);
 
     const clear = useCallback((timeout = 100) => setTimeout(() => setRequestState(initalState), timeout), []);
@@ -44,7 +44,7 @@ const useRequestState = () => {
             } catch (error) {
                 const hadError = error && error.response;
                 if (hadError && error.response.status === 401) {
-                    removeUser();
+                    removeClient();
                     history.push([ROUTE_NAME.OUT.DEFAULT]);
                 }
 
@@ -61,7 +61,7 @@ const useRequestState = () => {
             setRequestState(responseObj);
             return responseObj;
         },
-        [removeUser, history, clear]
+        [removeClient, history, clear]
     );
 
     return {
