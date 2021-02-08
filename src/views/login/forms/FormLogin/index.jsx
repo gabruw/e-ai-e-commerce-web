@@ -2,7 +2,7 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import ActionButtons from 'components/ActionButtons';
-import MessageBox from 'containers/MessageBox';
+import MessageBox from 'components/MessageBox';
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';

@@ -1,6 +1,5 @@
 //#region Imports
 
-import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Logo from 'assets/images/logo.png';

@@ -1,13 +1,13 @@
 //#region Imports
 
 import TextField from '@material-ui/core/TextField';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FieldWrapper from 'components/FieldWrapper';
-import React, { Fragment } from 'react';
+import React from 'react';
 import ADDRESS_FIELD from 'utils/constants/field/address';
 import ADDRESS_LABEL from 'utils/constants/label/address';
 import CountryFields from './CountryFields';
 import useStyles from './styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 //#endregion
 

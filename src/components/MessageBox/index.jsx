@@ -8,10 +8,13 @@ import React, { Fragment, useMemo } from 'react';
 
 const MessageBox = ({ errors = [], title = '', text = '', severity = 'error' }) => {
     const hasErrors = useMemo(() => errors && Array.isArray(errors) && errors.length > 0, [errors]);
-
-    const getTitle = useMemo(() => (hasErrors && errors.length === 1 ? errors[0].title : title), [errors]);
-
     const hasSome = useMemo(() => hasErrors || text, [hasErrors, text]);
+
+    const getTitle = useMemo(() => (hasErrors && errors.length === 1 ? errors[0].title : title), [
+        hasErrors,
+        errors,
+        title
+    ]);
 
     return (
         <Fragment>
