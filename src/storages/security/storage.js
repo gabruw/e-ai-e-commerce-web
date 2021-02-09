@@ -2,7 +2,7 @@
 
 import CryptoJS from 'crypto-js';
 import SecureStorage from 'secure-web-storage';
-import LOCAL_STORAGE from 'utils/constants/types/local-storage';
+import LOCAL_STORAGE from 'utils/constants/type/local-storage';
 
 //#endregion
 

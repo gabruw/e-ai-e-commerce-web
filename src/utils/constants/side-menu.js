@@ -6,7 +6,7 @@ import MapIcon from '@material-ui/icons/Map';
 import RoomIcon from '@material-ui/icons/Room';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ROUTE_NAME from 'routes/route-name';
-import AUTHENTICATION_TYPE from 'utils/constants/types/authetication';
+import AUTHENTICATION_TYPE from 'utils/constants/type/authetication';
 
 //#endregion
 

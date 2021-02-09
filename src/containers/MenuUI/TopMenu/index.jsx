@@ -45,19 +45,19 @@ const TopMenu = ({ open, setOpen }) => {
         <AppBar position='fixed' className={appBarClass}>
             <Toolbar>
                 <IconButton edge='start' color='inherit' className={iconButtonClass} onClick={() => setOpen(true)}>
-                    <MenuIcon className={styles.gray} />
+                    <MenuIcon className={styles.mainColor} />
                 </IconButton>
 
                 <img src={Logo} alt='logo' className={styles.img} />
 
-                <Typography className={styles.gray} variant='h3' noWrap>
+                <Typography className={styles.mainColor} variant='h3' noWrap>
                     Abastece Aí
                 </Typography>
 
                 <div className={styles.right}>
                     <IconButton color='inherit' onClick={() => setMenu(true)}>
-                        <AccountCircle className={styles.gray} />
-                        <Typography className={styles.gray} variant='h6' noWrap>
+                        <AccountCircle className={styles.mainColor} />
+                        <Typography className={styles.mainColor} variant='h6' noWrap>
                             {name}
                         </Typography>
                     </IconButton>

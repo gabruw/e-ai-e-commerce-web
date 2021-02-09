@@ -14,10 +14,9 @@ import useStyles from './styles';
 
 const Login = () => {
     const isLarge = useMediaQuery((theme) => theme.breakpoints.up('lg'));
-
     const styles = useStyles({ isLarge });
-    const [isLogin, setIsLogin] = useState(true);
 
+    const [isLogin, setIsLogin] = useState(true);
     const title = useMemo(() => (isLogin ? 'Login' : 'Registrar-se'), [isLogin]);
 
     return (
