@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     },
     right: {
         marginLeft: 'auto'
+    },
+    iconButton: {
+        borderRadius: 0
     }
 }));
 
