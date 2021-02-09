@@ -61,7 +61,9 @@ export const StateContextProvider = ({ children, defaultValues }) => {
         [_setState]
     );
 
-    const fetch = useCallback(async () => await run(() => getAllStates()), [run]);
+    const fetch = useCallback(async (page, order, direction) => await run(() => getAllStates(page, order, direction)), [
+        run
+    ]);
     const fetchStates = useCallback(
         async (page, order, direction) => {
             setIsLoading();

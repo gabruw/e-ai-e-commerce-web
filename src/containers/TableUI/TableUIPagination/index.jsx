@@ -6,7 +6,7 @@ import PAGEABLE_FIELD from 'utils/constants/field/pageable';
 
 //#endregion
 
-const TableUIPagination = ({ pageable }) => {
+const TableUIPagination = ({ fetch, pageable }) => {
     const handleRowsSize = useCallback(
         async (event) => {
             console.log('event.target.value', event.target.value);

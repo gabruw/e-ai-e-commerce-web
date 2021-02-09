@@ -95,7 +95,7 @@ const TableUI = ({ columns = [], rows = [], fetch, remove, pageable }) => {
                     </Table>
                 </TableContainer>
 
-                <TableUIPagination pageable={pageable} />
+                <TableUIPagination fetch={fetch} pageable={pageable} />
             </Paper>
         </Fragment>
     );
