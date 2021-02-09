@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         ...ALIGN.CENTER
     },
+    icon: {
+        marginRight: '5px',
+        color: COLOR.BLUE.MEDIUM
+    },
     divider: {
         height: 2,
         marginTop: 10,

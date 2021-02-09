@@ -9,7 +9,7 @@ import useStyles, { useClasses } from './styles';
 
 //#endregion
 
-const ModalUI = ({ title = '', onClose, width, children }, ref) => {
+const ModalUI = ({ icon, title, onClose, width, children }, ref) => {
     const styles = useStyles({ width });
     const classes = useClasses();
 
@@ -35,6 +35,7 @@ const ModalUI = ({ title = '', onClose, width, children }, ref) => {
                 <div className={styles.paper}>
                     <div className={styles.header}>
                         <div className={styles.row}>
+                            <div className={styles.icon}>{icon}</div>
                             <Typography variant='h2' color='primary'>
                                 {title}
                             </Typography>
