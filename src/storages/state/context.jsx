@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useRef, useState } from 'react'
 import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
 import PAGEABLE_FIELDS from 'utils/constants/field/pageable';
 import STATE_FIELDS from 'utils/constants/field/state';
+import isPresent from 'utils/functions/isPresent';
 import useRequestState from 'utils/hooks/useRequestState';
 import { getAllStates } from './services/get-data';
 
@@ -34,12 +35,16 @@ export const StateContextProvider = ({ children, defaultValues }) => {
         [_setState]
     );
 
-    const setSelect = useCallback(
+    const setSelected = useCallback(
         (id) =>
-            _setState((prevState) => ({
-                ...prevState,
-                selected: prevState[STATE_FIELDS.THIS].find((value) => value[STATE_FIELDS.ID] === id)
-            })),
+            _setState((prevState) => {
+                const selected = id && prevState[STATE_FIELDS.THIS].find((value) => value[STATE_FIELDS.ID] === id);
+                return {
+                    ...prevState,
+                    hasSelected: isPresent(selected),
+                    selected: selected || initialState.selected
+                };
+            }),
         [_setState]
     );
 
@@ -88,7 +93,7 @@ export const StateContextProvider = ({ children, defaultValues }) => {
 
     return (
         <StateContext.Provider
-            value={{ show, hide, _state, modalRef, setState, setSelect, setIsLoading, setError, fetchStates }}
+            value={{ show, hide, _state, modalRef, setState, setSelected, setIsLoading, setError, fetchStates }}
         >
             {children}
         </StateContext.Provider>
@@ -96,11 +101,11 @@ export const StateContextProvider = ({ children, defaultValues }) => {
 };
 
 const useStateContext = () => {
-    const { show, hide, _state, modalRef, setState, setSelect, setIsLoading, setError, fetchStates } = useContext(
+    const { show, hide, _state, modalRef, setState, setSelected, setIsLoading, setError, fetchStates } = useContext(
         StateContext
     );
 
-    return { show, hide, modalRef, setState, setSelect, setIsLoading, setError, fetchStates, ..._state };
+    return { show, hide, modalRef, setState, setSelected, setIsLoading, setError, fetchStates, ..._state };
 };
 
 export default useStateContext;

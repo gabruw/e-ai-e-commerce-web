@@ -31,6 +31,7 @@ const ModalCrudUI = ({ isAdd, isEdit, isRemove, title, children, onConfirm, onCl
 
                 <div className={styles.actionButtons}>
                     <ActionButtons
+                        primarySubmit={false}
                         secondaryText='Voltar'
                         primaryText='Confirmar'
                         secondaryOnClick={() => onClose && onClose()}

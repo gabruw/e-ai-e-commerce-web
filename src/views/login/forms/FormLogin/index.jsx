@@ -28,7 +28,6 @@ const FormLogin = ({ setIsLogin }) => {
     const { run, requestState } = useRequestState();
     const onSubmit = useCallback(
         async (data) => {
-            console.log('login: ', data);
             const response = await run(() => postLogin(data));
             if (response.success) {
                 addClient({ ...response.data, token: response.token });

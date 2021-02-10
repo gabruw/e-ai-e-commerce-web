@@ -4,13 +4,16 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Divider from '@material-ui/core/Divider';
 import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React, { forwardRef, Fragment, useImperativeHandle, useState } from 'react';
 import useStyles, { useClasses } from './styles';
 
 //#endregion
 
-const ModalUI = ({ icon, title, onClose, width, children }, ref) => {
-    const styles = useStyles({ width });
+const ModalUI = ({ icon, title, width, children }, ref) => {
+    const isLarge = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+
+    const styles = useStyles({ isLarge, width });
     const classes = useClasses();
 
     const [open, setOpen] = useState(false);
@@ -23,7 +26,6 @@ const ModalUI = ({ icon, title, onClose, width, children }, ref) => {
     return (
         <Modal
             open={open}
-            onClose={onClose}
             closeAfterTransition
             className={styles.modal}
             BackdropComponent={Backdrop}

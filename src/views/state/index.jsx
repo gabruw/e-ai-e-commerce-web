@@ -1,10 +1,10 @@
 //#region Imports
 
 import ModalUI from 'containers/ModalUI';
-import React, { Fragment } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import useStateContext, { StateContextProvider } from 'storages/state/context';
 import ContainerState from './ContainerState';
-import useStyles from './styles';
+import FormState from './FormState';
 
 //#endregion
 
@@ -15,15 +15,16 @@ const State = () => (
 );
 
 const StateContent = () => {
-    const styles = useStyles();
-    const { modalRef } = useStateContext();
+    const { modalRef, hasSelected } = useStateContext();
+
+    const titleModal = useMemo(() => `${hasSelected ? 'Editar' : 'Adicionar'} estado`, [hasSelected]);
 
     return (
         <Fragment>
             <ContainerState />
 
-            <ModalUI ref={modalRef} title=''>
-                <Fragment></Fragment>
+            <ModalUI ref={modalRef} title={titleModal}>
+                <FormState />
             </ModalUI>
         </Fragment>
     );

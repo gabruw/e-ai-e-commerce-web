@@ -7,6 +7,7 @@ import ContextBox from 'components/ContextBox';
 import Loader from 'components/Loader';
 import React, { useMemo } from 'react';
 import useStyles from './styles';
+import COLOR from 'utils/constants/color';
 
 //#endregion
 
@@ -22,6 +23,8 @@ const ContentBox = ({ icon, title, fetch, children, isLoading, onClickAdd }) => 
                         minWidth='50px'
                         isLoading={isLoading}
                         className={styles.button}
+                        color={COLOR.YELLOW.MEDIUM}
+                        hoverColor={COLOR.YELLOW.DARK}
                         onClick={async () => await fetch()}
                     >
                         <RotateLeftIcon className={styles.icon} />

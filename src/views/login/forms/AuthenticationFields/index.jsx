@@ -10,26 +10,22 @@ import AUTHETICATION_LABEL from 'utils/constants/label/authentication';
 
 const AuthenticationFields = ({ errors }) => (
     <Fragment>
-        <div>
-            <FieldWrapper
-                required
-                errors={errors}
-                render={TextField}
-                name={AUTHETICATION_FIELD.EMAIL}
-                label={AUTHETICATION_LABEL.EMAIL}
-            />
-        </div>
+        <FieldWrapper
+            required
+            errors={errors}
+            render={TextField}
+            name={AUTHETICATION_FIELD.EMAIL}
+            label={AUTHETICATION_LABEL.EMAIL}
+        />
 
-        <div>
-            <FieldWrapper
-                required
-                type='password'
-                render={TextField}
-                errors={errors}
-                name={AUTHETICATION_FIELD.PASSWORD}
-                label={AUTHETICATION_LABEL.PASSWORD}
-            />
-        </div>
+        <FieldWrapper
+            required
+            type='password'
+            render={TextField}
+            errors={errors}
+            name={AUTHETICATION_FIELD.PASSWORD}
+            label={AUTHETICATION_LABEL.PASSWORD}
+        />
     </Fragment>
 );
 

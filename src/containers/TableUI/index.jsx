@@ -17,18 +17,18 @@ import TableUIPagination from './TableUIPagination';
 
 //#endregion
 
-const TableUI = ({ columns = [], rows = [], fetch, remove, pageable }) => {
+const TableUI = ({ columns = [], rows = [], fetch, pageable, onClickEdit, onClickRemove }) => {
     const modalRef = useRef();
     const styles = useStyles();
 
     const [selectedId, setSelectedId] = useState(null);
 
     const handleRemove = useCallback(async () => {
-        await remove(selectedId);
-        fetch();
-    }, [remove, selectedId, fetch]);
+        await onClickRemove(selectedId);
+        await fetch();
+    }, [onClickRemove, selectedId, fetch]);
 
-    const removeConfirm = useCallback(
+    const confirmRemove = useCallback(
         (id) => {
             setSelectedId(id);
             modalRef.current.show();
@@ -80,15 +80,21 @@ const TableUI = ({ columns = [], rows = [], fetch, remove, pageable }) => {
                                                 </TableCell>
                                             ))}
 
-                                        <TableCell align='center' size='small'>
-                                            <IconButton>
-                                                <EditIcon className={styles.editIcon} />
-                                            </IconButton>
+                                        {(onClickEdit || onClickRemove) && (
+                                            <TableCell align='center' size='small'>
+                                                {onClickEdit && (
+                                                    <IconButton onClick={() => onClickEdit(row.id)}>
+                                                        <EditIcon className={styles.editIcon} />
+                                                    </IconButton>
+                                                )}
 
-                                            <IconButton onClick={() => removeConfirm()}>
-                                                <DeleteIcon className={styles.removeIcon} />
-                                            </IconButton>
-                                        </TableCell>
+                                                {onClickRemove && (
+                                                    <IconButton onClick={() => confirmRemove(row.id)}>
+                                                        <DeleteIcon className={styles.removeIcon} />
+                                                    </IconButton>
+                                                )}
+                                            </TableCell>
+                                        )}
                                     </TableRow>
                                 ))}
                         </TableBody>

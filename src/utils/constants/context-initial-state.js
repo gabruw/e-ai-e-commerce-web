@@ -6,7 +6,7 @@ import PAGEABLE_FIELDS from 'utils/constants/field/pageable';
 
 const CONTEXT_INITIAL_STATE = {
     error: null,
-    selected: null,
+    selected: {},
     isLoading: false,
     hasSelected: false,
     [PAGEABLE_FIELDS.THIS]: {

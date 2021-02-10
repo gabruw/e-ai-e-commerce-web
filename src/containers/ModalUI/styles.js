@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
         outline: 0,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-        minWidth: ({ width = 600 }) => width,
         backgroundColor: theme.palette.background.paper,
+        minWidth: ({ isLarge, width = 600 }) => isLarge && width,
         ...ALIGN.COLUMN
     },
     header: {

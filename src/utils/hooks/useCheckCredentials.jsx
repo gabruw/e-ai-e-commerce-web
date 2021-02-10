@@ -18,7 +18,7 @@ const useCheckCredentials = () => {
             return true;
         }
 
-        history.push(ROUTE_NAME.OUT.ERROR);
+        history.push({ pathname: ROUTE_NAME.OUT.ERROR, search: '?type=401' });
         return false;
     }, [client, history]);
 

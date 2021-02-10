@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { useTheme } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import React, { useCallback } from 'react';
+import React from 'react';
 import SideMenuItem from './SideMenuItem';
 import useStyles, { useClasses } from './styles';
 

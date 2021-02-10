@@ -21,7 +21,7 @@ const useStyles = makeStyles({
         marginBottom: 30
     },
     icon: {
-        color: '#FFFFFF'
+        color: '#000000'
     }
 });
 

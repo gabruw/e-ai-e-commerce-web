@@ -9,7 +9,8 @@ import PAGEABLE_FIELD from 'utils/constants/field/pageable';
 const TableUIPagination = ({ fetch, pageable }) => {
     const handleRowsSize = useCallback(
         async (event) => {
-            console.log('event.target.value', event.target.value);
+            // TODO: Adicionar funcionalidade de mundança de número de registros requisitados
+            // console.log('event.target.value', event.target.value);
             await fetch(0);
         },
         [fetch]
