@@ -1,5 +1,6 @@
 //#region Imports
 
+import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -11,14 +12,20 @@ import useStyles from './styles';
 
 //#endregion
 
-const SideMenuItem = ({ isTop = false }) => {
+const SideMenuItem = ({ title, type }) => {
     const styles = useStyles();
     const history = useHistory();
 
-    const options = useMemo(() => (isTop ? SIDEMENU_OPTIONS.TOP : SIDEMENU_OPTIONS.BOTTOM), [isTop]);
+    const options = useMemo(() => SIDEMENU_OPTIONS[type], [type]);
 
     return (
-        <List>
+        <List
+            subheader={
+                <ListSubheader className={styles.subheader} component='div'>
+                    {title}
+                </ListSubheader>
+            }
+        >
             {options.map(({ text, icon: Icon, path }, index) => (
                 <ListItem key={index} onClick={() => history.push(path)} button>
                     <ListItemIcon>

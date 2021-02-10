@@ -9,15 +9,15 @@ const useStyles = makeStyles({
     content: {
         width: '100%',
         flexWrap: 'wrap',
-        margin: '12px 0 12px 0',
-        alignItems: 'flex-start',
-        ...ALIGN.LEFT
+        margin: ({ hasMargin = true }) => (hasMargin ? '12px 0 12px 0' : 0),
+        ...ALIGN.LEFT,
+        alignItems: 'flex-start'
     },
     field: {
         width: '100%',
         flexDirection: 'column',
-        alignItems: 'flex-start',
-        ...ALIGN.LEFT
+        ...ALIGN.LEFT,
+        alignItems: 'flex-start'
     },
     label: {
         width: '100%',
@@ -36,8 +36,8 @@ const useStyles = makeStyles({
         color: 'red',
         width: '100%',
         flexWrap: 'wrap',
-        alignItems: 'flex-start',
-        ...ALIGN.RIGHT
+        ...ALIGN.RIGHT,
+        alignItems: 'flex-start'
     }
 });
 

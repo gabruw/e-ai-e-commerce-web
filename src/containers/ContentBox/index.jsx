@@ -11,7 +11,7 @@ import COLOR from 'utils/constants/color';
 
 //#endregion
 
-const ContentBox = ({ icon, title, fetch, children, isLoading, onClickAdd }) => {
+const ContentBox = ({ icon, title, fetch, children, isLoading, onClickAdd, rightContent, leftContent }) => {
     const styles = useStyles();
     const buttonText = useMemo(() => `Adicionar ${title}`, [title]);
 
@@ -19,6 +19,7 @@ const ContentBox = ({ icon, title, fetch, children, isLoading, onClickAdd }) => 
         <ContextBox icon={icon} title={title}>
             <div className={styles.buttonContent}>
                 <div className={styles.left}>
+                    {leftContent}
                     {fetch && (
                         <ButtonUI
                             minWidth='50px'
@@ -33,9 +34,15 @@ const ContentBox = ({ icon, title, fetch, children, isLoading, onClickAdd }) => 
                     )}
                 </div>
 
-                <div className={styles.right} onClick={() => onClickAdd()}>
+                <div className={styles.right}>
+                    {rightContent}
                     {onClickAdd && (
-                        <ButtonUI className={styles.button} isDisabled={isLoading} startIcon={<AddIcon />}>
+                        <ButtonUI
+                            isDisabled={isLoading}
+                            startIcon={<AddIcon />}
+                            className={styles.button}
+                            onClick={() => onClickAdd()}
+                        >
                             {buttonText}
                         </ButtonUI>
                     )}

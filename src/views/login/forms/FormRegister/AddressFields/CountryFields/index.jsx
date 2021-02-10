@@ -4,8 +4,10 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FieldWrapper from 'components/FieldWrapper';
 import FieldState from 'containers/FieldState';
 import React, { useState } from 'react';
-import ADDRESS_FIELD from 'utils/constants/field/address';
-import ADDRESS_LABEL from 'utils/constants/label/address';
+import CITY_FIELD from 'utils/constants/field/city';
+import STATE_FIELD from 'utils/constants/field/state';
+import CITY_LABEL from 'utils/constants/label/city';
+import STATE_LABEL from 'utils/constants/label/state';
 import FieldCity from './FieldCity';
 import useStyles from './styles';
 
@@ -25,8 +27,8 @@ const CountryFields = ({ errors }) => {
                     errors={errors}
                     value={idState}
                     render={FieldState}
-                    name={ADDRESS_FIELD.STATE}
-                    label={ADDRESS_LABEL.STATE}
+                    name={STATE_FIELD.THIS}
+                    label={STATE_LABEL.THIS}
                     onChange={(event) => setIdState(event.target.value)}
                 />
             </div>
@@ -37,8 +39,8 @@ const CountryFields = ({ errors }) => {
                     errors={errors}
                     idState={idState}
                     render={FieldCity}
-                    name={ADDRESS_FIELD.CITY}
-                    label={ADDRESS_LABEL.CITY}
+                    name={CITY_FIELD.THIS}
+                    label={CITY_LABEL.THIS}
                 />
             </div>
         </div>

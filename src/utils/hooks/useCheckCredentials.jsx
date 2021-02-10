@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import ROUTE_NAME from 'routes/route-name';
 import useClientContext from 'storages/client/context';
-import verifyRoute from 'utils/functions/verifyRoute';
+import isOutRoute from 'utils/functions/isOutRoute';
 
 //#endregion
 
@@ -13,8 +13,8 @@ const useCheckCredentials = () => {
     const { client } = useClientContext();
 
     const canEnter = useCallback(() => {
-        const isntSystemRoute = verifyRoute();
-        if (isntSystemRoute || (!isntSystemRoute && client)) {
+        const isOut = isOutRoute();
+        if (isOut || (!isOut && client)) {
             return true;
         }
 

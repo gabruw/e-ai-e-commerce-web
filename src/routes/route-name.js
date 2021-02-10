@@ -7,8 +7,8 @@ const ROUTE_NAME = {
     },
     IN: {
         HOME: '/system/home',
-        STATE: '/system/state',
         CITY: '/system/city',
+        STATE: '/system/state',
         ADDRESS: '/system/address'
     }
 };

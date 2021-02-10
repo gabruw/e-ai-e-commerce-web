@@ -5,7 +5,7 @@ import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
 import ADDRESS_FIELDS from 'utils/constants/field/address';
 import PAGEABLE_FIELDS from 'utils/constants/field/pageable';
 import useRequestState from 'utils/hooks/useRequestState';
-import { getAllAddresses } from './services/get-data';
+import { getAllAddressByCep, getAllAddresses } from './services/get-data';
 
 //#endregion
 
@@ -43,7 +43,21 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
         [setState]
     );
 
-    const fetch = useCallback(
+    const setResponse = useCallback(
+        (data) =>
+            setState((prevState) => ({
+                ...prevState,
+                [ADDRESS_FIELDS.THIS]: data.content,
+                [PAGEABLE_FIELDS.THIS]: {
+                    ...data[PAGEABLE_FIELDS.THIS],
+                    [PAGEABLE_FIELDS.TOTAL_PAGES]: data[PAGEABLE_FIELDS.TOTAL_PAGES],
+                    [PAGEABLE_FIELDS.TOTAL_ELEMENTS]: data[PAGEABLE_FIELDS.TOTAL_ELEMENTS]
+                }
+            })),
+        [setState]
+    );
+
+    const fetchAllAddresses = useCallback(
         async (page, order, direction) => await run(() => getAllAddresses(page, order, direction)),
         [run]
     );
@@ -51,35 +65,45 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
         async (page, order, direction) => {
             setIsLoading();
 
-            await fetch(page, order, direction)
-                .then(({ data }) =>
-                    setState((prevState) => ({
-                        ...prevState,
-                        [ADDRESS_FIELDS.THIS]: data.content,
-                        [PAGEABLE_FIELDS.THIS]: {
-                            ...data[PAGEABLE_FIELDS.THIS],
-                            [PAGEABLE_FIELDS.TOTAL_PAGES]: data[PAGEABLE_FIELDS.TOTAL_PAGES],
-                            [PAGEABLE_FIELDS.TOTAL_ELEMENTS]: data[PAGEABLE_FIELDS.TOTAL_ELEMENTS]
-                        }
-                    }))
-                )
+            await fetchAllAddresses(page, order, direction)
+                .then(({ data }) => setResponse(data))
                 .catch((error) => setError(error))
                 .finally(() => setIsLoading());
         },
-        [setIsLoading, fetch, setState, setError]
+        [setIsLoading, fetchAllAddresses, setResponse, setError]
+    );
+
+    const fetchAllAddressesByCep = useCallback(
+        async (page, order, direction) => await run(() => getAllAddressByCep(page, order, direction)),
+        [run]
+    );
+    const fetchAddressesByCep = useCallback(
+        async (page, order, direction) => {
+            setIsLoading();
+
+            await fetchAllAddressesByCep(page, order, direction)
+                .then(({ data }) => setResponse(data))
+                .catch((error) => setError(error))
+                .finally(() => setIsLoading());
+        },
+        [setIsLoading, fetchAllAddressesByCep, setResponse, setError]
     );
 
     return (
-        <AddressContext.Provider value={{ show, hide, state, modalRef, setIsLoading, setError, fetchAddresses }}>
+        <AddressContext.Provider
+            value={{ show, hide, state, modalRef, setIsLoading, setError, fetchAddresses, fetchAddressesByCep }}
+        >
             {children}
         </AddressContext.Provider>
     );
 };
 
 const useAddressContext = () => {
-    const { show, hide, state, modalRef, setIsLoading, setError, fetchAddresses } = useContext(AddressContext);
+    const { show, hide, state, modalRef, setIsLoading, setError, fetchAddresses, fetchAddressesByCep } = useContext(
+        AddressContext
+    );
 
-    return { show, hide, modalRef, setIsLoading, setError, fetchAddresses, ...state };
+    return { show, hide, modalRef, setIsLoading, setError, fetchAddresses, fetchAddressesByCep, ...state };
 };
 
 export default useAddressContext;

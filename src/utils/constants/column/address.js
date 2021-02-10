@@ -10,6 +10,7 @@ import STATE_LABEL from 'utils/constants/label/state';
 //#endregion
 
 const ADDRESS_COLUMN = [
+    { label: ADDRESS_LABEL.CEP, field: ADDRESS_FIELD.CEP },
     { label: ADDRESS_LABEL.ROAD, field: ADDRESS_FIELD.ROAD },
     { label: ADDRESS_LABEL.NEIGHBORHOOD, field: ADDRESS_FIELD.NEIGHBORHOOD },
     { label: ADDRESS_LABEL.NUMBER, field: ADDRESS_FIELD.NUMBER },

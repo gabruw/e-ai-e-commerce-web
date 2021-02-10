@@ -1,17 +1,15 @@
 //#region Imports
 
 import MenuUI from 'containers/MenuUI';
-import React, { useMemo } from 'react';
-import verifyRoute from 'utils/functions/verifyRoute';
+import React from 'react';
 import useCheckCredentials from 'utils/hooks/useCheckCredentials';
 
 //#endregion
 
 const RouterFilter = ({ children }) => {
     const { canEnter } = useCheckCredentials();
-    const isntSystemRoute = useMemo(() => verifyRoute(), []);
 
-    return isntSystemRoute ? children : canEnter() && <MenuUI>{children}</MenuUI>;
+    return canEnter() ? <MenuUI>{children}</MenuUI> : children;
 };
 
 export default RouterFilter;

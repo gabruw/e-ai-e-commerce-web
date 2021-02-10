@@ -4,45 +4,34 @@ import HomeIcon from '@material-ui/icons/Home';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import MapIcon from '@material-ui/icons/Map';
 import RoomIcon from '@material-ui/icons/Room';
-import SettingsIcon from '@material-ui/icons/Settings';
 import ROUTE_NAME from 'routes/route-name';
-import AUTHENTICATION_TYPE from 'utils/constants/type/authetication';
+import SIDE_MENU_TYPE from 'utils/constants/type/side-menu';
 
 //#endregion
 
+const { MANAGEMENT } = SIDE_MENU_TYPE;
+
 const SIDEMENU_OPTIONS = {
-    TOP: [
+    [MANAGEMENT]: [
         {
             text: 'Principal',
             icon: HomeIcon,
-            path: ROUTE_NAME.IN.HOME,
-            auth: AUTHENTICATION_TYPE.ANY
+            path: ROUTE_NAME.IN.HOME
         },
         {
             text: 'Estados',
             icon: MapIcon,
-            path: ROUTE_NAME.IN.STATE,
-            auth: AUTHENTICATION_TYPE.ADMIN
+            path: ROUTE_NAME.IN.STATE
         },
         {
             text: 'Cidades',
             icon: LocationCityIcon,
-            path: ROUTE_NAME.IN.CITY,
-            auth: AUTHENTICATION_TYPE.ADMIN
+            path: ROUTE_NAME.IN.CITY
         },
         {
             text: 'Endereços',
             icon: RoomIcon,
-            path: ROUTE_NAME.IN.ADDRESS,
-            auth: AUTHENTICATION_TYPE.ADMIN
-        }
-    ],
-    BOTTOM: [
-        {
-            text: 'Configurações',
-            icon: SettingsIcon,
-            path: ROUTE_NAME.OUT.ERROR,
-            auth: AUTHENTICATION_TYPE.ANY
+            path: ROUTE_NAME.IN.ADDRESS
         }
     ]
 };

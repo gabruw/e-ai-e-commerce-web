@@ -17,11 +17,12 @@ const FieldWrapper = ({
     errors,
     isDate,
     className,
+    hasMargin,
     required = false,
     component: Component,
     ...rest
 }) => {
-    const styles = useStyles();
+    const styles = useStyles({ hasMargin });
 
     const componentClass = clsx(styles.component, className);
     const error = useMemo(() => errors && errors[name], [errors, name]);

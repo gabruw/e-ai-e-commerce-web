@@ -7,6 +7,7 @@ import { useTheme } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import React from 'react';
+import SIDE_MENU_TYPE from 'utils/constants/type/side-menu';
 import SideMenuItem from './SideMenuItem';
 import useStyles, { useClasses } from './styles';
 
@@ -38,10 +39,9 @@ const SideMenu = ({ open, setOpen }) => {
             </div>
 
             <Divider classes={{ root: classes.divider }} />
-            <SideMenuItem isTop />
 
-            <Divider classes={{ root: classes.divider }} />
-            <SideMenuItem />
+            <SideMenuItem title='Gerenciamento' type={SIDE_MENU_TYPE.MANAGEMENT} />
+
             <Divider classes={{ root: classes.divider }} />
         </Drawer>
     );

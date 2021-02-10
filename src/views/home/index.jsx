@@ -1,13 +1,10 @@
 //#region Imports
 
 import React, { Fragment } from 'react';
-import useStyles from './styles';
 
 //#endregion
 
 const Home = () => {
-    const styles = useStyles();
-
     return <Fragment></Fragment>;
 };
 
