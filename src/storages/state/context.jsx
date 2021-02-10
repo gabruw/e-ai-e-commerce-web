@@ -26,15 +26,6 @@ export const StateContextProvider = ({ children, defaultValues }) => {
     const show = useCallback(() => modalRef.current && modalRef.current.show(), [modalRef]);
     const hide = useCallback(() => modalRef.current && modalRef.current.hide(), [modalRef]);
 
-    const setState = useCallback(
-        (state = null) =>
-            _setState((prevState) => ({
-                ...prevState,
-                [STATE_FIELDS.THIS]: state
-            })),
-        [_setState]
-    );
-
     const setSelected = useCallback(
         (id) =>
             _setState((prevState) => {
@@ -93,7 +84,7 @@ export const StateContextProvider = ({ children, defaultValues }) => {
 
     return (
         <StateContext.Provider
-            value={{ show, hide, _state, modalRef, setState, setSelected, setIsLoading, setError, fetchStates }}
+            value={{ show, hide, _state, modalRef, setSelected, setIsLoading, setError, fetchStates }}
         >
             {children}
         </StateContext.Provider>
@@ -101,11 +92,9 @@ export const StateContextProvider = ({ children, defaultValues }) => {
 };
 
 const useStateContext = () => {
-    const { show, hide, _state, modalRef, setState, setSelected, setIsLoading, setError, fetchStates } = useContext(
-        StateContext
-    );
+    const { show, hide, _state, modalRef, setSelected, setIsLoading, setError, fetchStates } = useContext(StateContext);
 
-    return { show, hide, modalRef, setState, setSelected, setIsLoading, setError, fetchStates, ..._state };
+    return { show, hide, modalRef, setSelected, setIsLoading, setError, fetchStates, ..._state };
 };
 
 export default useStateContext;

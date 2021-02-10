@@ -26,15 +26,6 @@ export const CityContextProvider = ({ children, defaultValues }) => {
     const show = useCallback(() => modalRef.current && modalRef.current.show(), [modalRef]);
     const hide = useCallback(() => modalRef.current && modalRef.current.hide(), [modalRef]);
 
-    const setCity = useCallback(
-        (city = null) =>
-            setState((prevState) => ({
-                ...prevState,
-                [CITY_FIELDS.THIS]: city
-            })),
-        [setState]
-    );
-
     const setSelected = useCallback(
         (id) =>
             setState((prevState) => {
@@ -92,20 +83,16 @@ export const CityContextProvider = ({ children, defaultValues }) => {
     );
 
     return (
-        <CityContext.Provider
-            value={{ show, hide, state, modalRef, setCity, setSelected, setIsLoading, setError, fetchCities }}
-        >
+        <CityContext.Provider value={{ show, hide, state, modalRef, setSelected, setIsLoading, setError, fetchCities }}>
             {children}
         </CityContext.Provider>
     );
 };
 
 const useCityContext = () => {
-    const { show, hide, state, modalRef, setCity, setSelected, setIsLoading, setError, fetchCities } = useContext(
-        CityContext
-    );
+    const { show, hide, state, modalRef, setSelected, setIsLoading, setError, fetchCities } = useContext(CityContext);
 
-    return { show, hide, modalRef, setCity, setSelected, setIsLoading, setError, fetchCities, ...state };
+    return { show, hide, modalRef, setSelected, setIsLoading, setError, fetchCities, ...state };
 };
 
 export default useCityContext;

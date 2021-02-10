@@ -4,7 +4,6 @@ import { createContext, useCallback, useContext, useRef, useState } from 'react'
 import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
 import ADDRESS_FIELDS from 'utils/constants/field/address';
 import PAGEABLE_FIELDS from 'utils/constants/field/pageable';
-import isPresent from 'utils/functions/isPresent';
 import useRequestState from 'utils/hooks/useRequestState';
 import { getAllAddresses } from './services/get-data';
 
@@ -25,28 +24,6 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
 
     const show = useCallback(() => modalRef.current && modalRef.current.show(), [modalRef]);
     const hide = useCallback(() => modalRef.current && modalRef.current.hide(), [modalRef]);
-
-    const setAddress = useCallback(
-        (address = null) =>
-            setState((prevState) => ({
-                ...prevState,
-                [ADDRESS_FIELDS.THIS]: address
-            })),
-        [setState]
-    );
-
-    const setSelected = useCallback(
-        (id) =>
-            setState((prevState) => {
-                const selected = id && prevState[ADDRESS_FIELDS.THIS].find((value) => value[ADDRESS_FIELDS.ID] === id);
-                return {
-                    ...prevState,
-                    hasSelected: isPresent(selected),
-                    selected: selected || initialState.selected
-                };
-            }),
-        [setState]
-    );
 
     const setIsLoading = useCallback(
         () =>
@@ -93,20 +70,16 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
     );
 
     return (
-        <AddressContext.Provider
-            value={{ show, hide, state, modalRef, setAddress, setSelected, setIsLoading, setError, fetchAddresses }}
-        >
+        <AddressContext.Provider value={{ show, hide, state, modalRef, setIsLoading, setError, fetchAddresses }}>
             {children}
         </AddressContext.Provider>
     );
 };
 
 const useAddressContext = () => {
-    const { show, hide, state, modalRef, setAddress, setSelected, setIsLoading, setError, fetchAddresses } = useContext(
-        AddressContext
-    );
+    const { show, hide, state, modalRef, setIsLoading, setError, fetchAddresses } = useContext(AddressContext);
 
-    return { show, hide, modalRef, setAddress, setSelected, setIsLoading, setError, fetchAddresses, ...state };
+    return { show, hide, modalRef, setIsLoading, setError, fetchAddresses, ...state };
 };
 
 export default useAddressContext;
