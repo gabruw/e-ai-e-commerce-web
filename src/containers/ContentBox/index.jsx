@@ -19,22 +19,26 @@ const ContentBox = ({ icon, title, fetch, children, isLoading, onClickAdd }) => 
         <ContextBox icon={icon} title={title}>
             <div className={styles.buttonContent}>
                 <div className={styles.left}>
-                    <ButtonUI
-                        minWidth='50px'
-                        isLoading={isLoading}
-                        className={styles.button}
-                        color={COLOR.YELLOW.MEDIUM}
-                        hoverColor={COLOR.YELLOW.DARK}
-                        onClick={async () => await fetch()}
-                    >
-                        <RotateLeftIcon className={styles.icon} />
-                    </ButtonUI>
+                    {fetch && (
+                        <ButtonUI
+                            minWidth='50px'
+                            isLoading={isLoading}
+                            className={styles.button}
+                            color={COLOR.YELLOW.MEDIUM}
+                            hoverColor={COLOR.YELLOW.DARK}
+                            onClick={async () => await fetch()}
+                        >
+                            <RotateLeftIcon className={styles.icon} />
+                        </ButtonUI>
+                    )}
                 </div>
 
                 <div className={styles.right} onClick={() => onClickAdd()}>
-                    <ButtonUI className={styles.button} isDisabled={isLoading} startIcon={<AddIcon />}>
-                        {buttonText}
-                    </ButtonUI>
+                    {onClickAdd && (
+                        <ButtonUI className={styles.button} isDisabled={isLoading} startIcon={<AddIcon />}>
+                            {buttonText}
+                        </ButtonUI>
+                    )}
                 </div>
             </div>
 
