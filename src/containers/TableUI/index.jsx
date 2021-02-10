@@ -76,7 +76,7 @@ const TableUI = ({ columns = [], rows = [], fetch, pageable, onClickEdit, onClic
                                         {columns &&
                                             columns.map((col, colIndex) => (
                                                 <TableCell key={colIndex} size='small'>
-                                                    {row[col.field]}
+                                                    {eval(`row.${col.field}`)}
                                                 </TableCell>
                                             ))}
 

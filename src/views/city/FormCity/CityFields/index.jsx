@@ -1,21 +1,20 @@
 //#region Imports
 
+import TextField from '@material-ui/core/TextField';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FieldWrapper from 'components/FieldWrapper';
 import FieldState from 'containers/FieldState';
-import React, { useState } from 'react';
-import ADDRESS_FIELD from 'utils/constants/field/address';
-import ADDRESS_LABEL from 'utils/constants/label/address';
-import FieldCity from './FieldCity';
+import React from 'react';
+import CITY_FIELD from 'utils/constants/field/city';
+import CITY_LABEL from 'utils/constants/label/city';
+import STATE_LABEL from 'utils/constants/label/state';
 import useStyles from './styles';
 
 //#endregion
 
-const CountryFields = ({ errors }) => {
+const CityFields = ({ errors }) => {
     const isLarge = useMediaQuery((theme) => theme.breakpoints.up('lg'));
     const styles = useStyles({ isLarge });
-
-    const [idState, setIdState] = useState(null);
 
     return (
         <div className={styles.content}>
@@ -23,11 +22,9 @@ const CountryFields = ({ errors }) => {
                 <FieldWrapper
                     required
                     errors={errors}
-                    value={idState}
-                    render={FieldState}
-                    name={ADDRESS_FIELD.STATE}
-                    label={ADDRESS_LABEL.STATE}
-                    onChange={(event) => setIdState(event.target.value)}
+                    render={TextField}
+                    name={CITY_FIELD.NAME}
+                    label={CITY_LABEL.THIS}
                 />
             </div>
 
@@ -35,14 +32,13 @@ const CountryFields = ({ errors }) => {
                 <FieldWrapper
                     required
                     errors={errors}
-                    idState={idState}
-                    render={FieldCity}
-                    name={ADDRESS_FIELD.CITY}
-                    label={ADDRESS_LABEL.CITY}
+                    render={FieldState}
+                    label={STATE_LABEL.THIS}
+                    name={CITY_FIELD.STATE_ID}
                 />
             </div>
         </div>
     );
 };
 
-export default CountryFields;
+export default CityFields;

@@ -1,8 +1,10 @@
 //#region Imports
 
 import ModalUI from 'containers/ModalUI';
-import React, { Fragment } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import useCityContext, { CityContextProvider } from 'storages/city/context';
+import ContainerCity from './ContainerCity';
+import FormCity from './FormCity';
 
 //#endregion
 
@@ -13,12 +15,16 @@ const City = () => (
 );
 
 const CityContent = () => {
-    const { modalRef } = useCityContext();
+    const { modalRef, hasSelected } = useCityContext();
+
+    const titleModal = useMemo(() => `${hasSelected ? 'Editar' : 'Adicionar'} cidade`, [hasSelected]);
 
     return (
         <Fragment>
-            <ModalUI ref={modalRef} title=''>
-                <Fragment></Fragment>
+            <ContainerCity />
+
+            <ModalUI ref={modalRef} title={titleModal}>
+                <FormCity />
             </ModalUI>
         </Fragment>
     );
