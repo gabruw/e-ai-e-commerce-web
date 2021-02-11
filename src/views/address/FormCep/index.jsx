@@ -24,7 +24,7 @@ const FormCep = () => {
     });
     const { handleSubmit, errors } = methods;
 
-    const { run } = useRequestState();
+    const { run, requestState } = useRequestState();
     const onSubmit = useCallback(async (data) => await run(() => fetchAddressesByCep(data[ADDRESS_FIELD.CEP])), [
         run,
         fetchAddressesByCep
@@ -42,9 +42,9 @@ const FormCep = () => {
                         <ButtonUI
                             type='submit'
                             minWidth='40px'
-                            isLoading={isLoading}
                             className={styles.button}
                             startIcon={<SearchIcon />}
+                            isLoading={requestState.isLoading || isLoading}
                         >
                             Buscar
                         </ButtonUI>
