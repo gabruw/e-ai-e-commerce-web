@@ -48,15 +48,6 @@ export const CityContextProvider = ({ children, defaultValues }) => {
         [setState]
     );
 
-    const setError = useCallback(
-        (error = null) =>
-            setState((prevState) => ({
-                ...prevState,
-                error
-            })),
-        [setState]
-    );
-
     const fetch = useCallback(async (page, order, direction) => await run(() => getAllCities(page, order, direction)), [
         run
     ]);
@@ -76,23 +67,22 @@ export const CityContextProvider = ({ children, defaultValues }) => {
                         }
                     }))
                 )
-                .catch((error) => setError(error))
                 .finally(() => setIsLoading());
         },
-        [setIsLoading, fetch, setState, setError]
+        [setIsLoading, fetch, setState]
     );
 
     return (
-        <CityContext.Provider value={{ show, hide, state, modalRef, setSelected, setIsLoading, setError, fetchCities }}>
+        <CityContext.Provider value={{ show, hide, state, modalRef, setSelected, setIsLoading, fetchCities }}>
             {children}
         </CityContext.Provider>
     );
 };
 
 const useCityContext = () => {
-    const { show, hide, state, modalRef, setSelected, setIsLoading, setError, fetchCities } = useContext(CityContext);
+    const { show, hide, state, modalRef, setSelected, setIsLoading, fetchCities } = useContext(CityContext);
 
-    return { show, hide, modalRef, setSelected, setIsLoading, setError, fetchCities, ...state };
+    return { show, hide, modalRef, setSelected, setIsLoading, fetchCities, ...state };
 };
 
 export default useCityContext;

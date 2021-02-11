@@ -42,9 +42,14 @@ const FormLogin = ({ setIsLogin }) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <AuthenticationFields errors={errors} />
 
-                <MessageBox title='Erro ao logar' errors={requestState.errors} />
+                <MessageBox title='Erro ao efetuar login' errors={requestState.errors} />
 
-                <ActionButtons primaryText='Entrar' secondaryText='Registrar-se' onClick={() => setIsLogin(false)} />
+                <ActionButtons
+                    primaryText='Entrar'
+                    secondaryText='Registrar-se'
+                    onClick={() => setIsLogin(false)}
+                    isLoading={requestState.isLoading}
+                />
             </form>
         </FormProvider>
     );

@@ -50,6 +50,7 @@ const FormState = () => {
                 setSelected={setSelected}
                 hasSelected={hasSelected}
                 onSubmit={handleSubmit(onSubmit)}
+                isLoading={requestState.isLoading}
                 requestErrors={requestState.errors}
             >
                 <StateFields errors={errors} />

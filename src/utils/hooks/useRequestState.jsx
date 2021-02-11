@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ROUTE_NAME from 'routes/route-name';
 import useClientContext from 'storages/client/context';
+import GENERIC_ERROR from 'utils/constants/error/generic';
 import sleep from 'utils/functions/sleep';
 
 //#endregion
@@ -54,7 +55,7 @@ const useRequestState = () => {
 
                 responseObj = {
                     ...initalState,
-                    errors: hadError && error.response.data ? error.response.data.errors : error
+                    errors: hadError && error.response.data ? error.response.data.errors : [GENERIC_ERROR.NETWORK]
                 };
             }
 

@@ -48,15 +48,6 @@ export const StateContextProvider = ({ children, defaultValues }) => {
         [_setState]
     );
 
-    const setError = useCallback(
-        (error = null) =>
-            _setState((prevState) => ({
-                ...prevState,
-                error
-            })),
-        [_setState]
-    );
-
     const fetch = useCallback(async (page, order, direction) => await run(() => getAllStates(page, order, direction)), [
         run
     ]);
@@ -76,25 +67,22 @@ export const StateContextProvider = ({ children, defaultValues }) => {
                         }
                     }))
                 )
-                .catch((error) => setError(error))
                 .finally(() => setIsLoading());
         },
-        [setIsLoading, fetch, _setState, setError]
+        [setIsLoading, fetch, _setState]
     );
 
     return (
-        <StateContext.Provider
-            value={{ show, hide, _state, modalRef, setSelected, setIsLoading, setError, fetchStates }}
-        >
+        <StateContext.Provider value={{ show, hide, _state, modalRef, setSelected, setIsLoading, fetchStates }}>
             {children}
         </StateContext.Provider>
     );
 };
 
 const useStateContext = () => {
-    const { show, hide, _state, modalRef, setSelected, setIsLoading, setError, fetchStates } = useContext(StateContext);
+    const { show, hide, _state, modalRef, setSelected, setIsLoading, fetchStates } = useContext(StateContext);
 
-    return { show, hide, modalRef, setSelected, setIsLoading, setError, fetchStates, ..._state };
+    return { show, hide, modalRef, setSelected, setIsLoading, fetchStates, ..._state };
 };
 
 export default useStateContext;

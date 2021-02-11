@@ -62,7 +62,12 @@ const FormRegister = ({ setIsLogin }) => {
 
                 <MessageBox title='Erro ao se registrar' errors={requestState.errors} />
 
-                <ActionButtons primaryText='Confirmar' secondaryText='Voltar' onClick={() => setIsLogin(true)} />
+                <ActionButtons
+                    primaryText='Confirmar'
+                    secondaryText='Voltar'
+                    onClick={() => setIsLogin(true)}
+                    isLoading={requestState.isLoading}
+                />
             </form>
         </FormProvider>
     );

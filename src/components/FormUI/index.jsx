@@ -7,7 +7,7 @@ import useStyles from './styles';
 
 //#endregion
 
-const FormUI = ({ hide, children, onSubmit, requestErrors, hasSelected, setSelected }) => {
+const FormUI = ({ hide, children, onSubmit, requestErrors, hasSelected, isLoading, setSelected }) => {
     const styles = useStyles();
 
     const titleMessageBox = useMemo(() => `Erro ao ${hasSelected ? 'editar' : 'incluir'} os dados do estado`, [
@@ -25,7 +25,12 @@ const FormUI = ({ hide, children, onSubmit, requestErrors, hasSelected, setSelec
             <MessageBox title={titleMessageBox} errors={requestErrors} />
 
             <div className={styles.actionButtons}>
-                <ActionButtons secondaryText='Voltar' primaryText='Confirmar' secondaryOnClick={() => handleClose()} />
+                <ActionButtons
+                    secondaryText='Voltar'
+                    primaryText='Confirmar'
+                    secondaryOnClick={() => handleClose()}
+                    isLoading={isLoading}
+                />
             </div>
         </form>
     );

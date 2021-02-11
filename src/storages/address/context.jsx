@@ -34,15 +34,6 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
         [setState]
     );
 
-    const setError = useCallback(
-        (error = null) =>
-            setState((prevState) => ({
-                ...prevState,
-                error
-            })),
-        [setState]
-    );
-
     const setResponse = useCallback(
         (data) =>
             setState((prevState) => ({
@@ -67,10 +58,9 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
 
             await fetchAllAddresses(page, order, direction)
                 .then(({ data }) => setResponse(data))
-                .catch((error) => setError(error))
                 .finally(() => setIsLoading());
         },
-        [setIsLoading, fetchAllAddresses, setResponse, setError]
+        [setIsLoading, fetchAllAddresses, setResponse]
     );
 
     const fetchAllAddressesByCep = useCallback(
@@ -83,15 +73,14 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
 
             await fetchAllAddressesByCep(page, order, direction)
                 .then(({ data }) => setResponse(data))
-                .catch((error) => setError(error))
                 .finally(() => setIsLoading());
         },
-        [setIsLoading, fetchAllAddressesByCep, setResponse, setError]
+        [setIsLoading, fetchAllAddressesByCep, setResponse]
     );
 
     return (
         <AddressContext.Provider
-            value={{ show, hide, state, modalRef, setIsLoading, setError, fetchAddresses, fetchAddressesByCep }}
+            value={{ show, hide, state, modalRef, setIsLoading, fetchAddresses, fetchAddressesByCep }}
         >
             {children}
         </AddressContext.Provider>
@@ -99,11 +88,11 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
 };
 
 const useAddressContext = () => {
-    const { show, hide, state, modalRef, setIsLoading, setError, fetchAddresses, fetchAddressesByCep } = useContext(
+    const { show, hide, state, modalRef, setIsLoading, fetchAddresses, fetchAddressesByCep } = useContext(
         AddressContext
     );
 
-    return { show, hide, modalRef, setIsLoading, setError, fetchAddresses, fetchAddressesByCep, ...state };
+    return { show, hide, modalRef, setIsLoading, fetchAddresses, fetchAddressesByCep, ...state };
 };
 
 export default useAddressContext;
